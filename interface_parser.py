@@ -1,6 +1,9 @@
-def_directory = "d:\\Преподавание\\_Бюрократия\\Планы\\2019-2020_2сем\\"
+# 18.12.2020 в интерфейс рейтинга добавили контактную информацию. Поэтому в parserHTML.py (76 строка) добавлен параметр shift. 
+# если это снова уберут, надо в него поставить 0
+
+def_directory = "c:\\Docs\\Преподавание\\_Бюрократия\\Планы\\2020_2021_2 сем\\"
 # def_directory = "d:\\Programs\\rating_parser\\"
-def_id_point = "1"
+def_id_point = "2"
 
 from PyQt5 import QtCore, QtWidgets, QtWebEngineWidgets
 import sys

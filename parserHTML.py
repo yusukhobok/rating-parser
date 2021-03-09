@@ -73,10 +73,11 @@ def parseHTML(data, web, FileName, id_point):
             print(row_number)
 
 
+        shift = 2
         if ok:
             ok = True
             if id_point > 1:
-                id_element = "ctl00_ContentPlaceHolder1_ASPxGridView1_cell%d_%d_TextBox1" % (row_number, 2 + (id_point - 1) * 3)
+                id_element = "ctl00_ContentPlaceHolder1_ASPxGridView1_cell%d_%d_TextBox1" % (row_number, 2 + (id_point - 1) * 3 + shift)
                 el = soup.find(id=id_element)
                 try:
                     old_value = int(el['value'])
@@ -86,16 +87,16 @@ def parseHTML(data, web, FileName, id_point):
                     ok = True
 
             if ok:
-                id_element = "ctl00_ContentPlaceHolder1_ASPxGridView1_cell%d_%d_TextBox1" % (row_number, 2+id_point*3)
+                id_element = "ctl00_ContentPlaceHolder1_ASPxGridView1_cell%d_%d_TextBox1" % (row_number, 2+id_point*3 + shift)
                 web.page().runJavaScript('document.getElementById("%s").value="%d";' % (id_element, row["curr_point"]))
             else:
                 print("Ошибка! Рейтинг меньше предыдушего")
-            id_element = "ctl00_ContentPlaceHolder1_ASPxGridView1_cell%d_%d_TextBox1" % (row_number, 3+id_point*3)
+            id_element = "ctl00_ContentPlaceHolder1_ASPxGridView1_cell%d_%d_TextBox1" % (row_number, 3+id_point*3 + shift)
             web.page().runJavaScript('document.getElementById("%s").value="%d";' % (id_element, row["absence_count"]))
         else:
             print("Ошибка! Фамилии не совпадают: %d %s" % (row["id"], row["fio"]))
 
-    id_element = "ctl00_ContentPlaceHolder1_ASPxGridView1_cell%d_%d_TextBox1" % (0, 2 + id_point * 3)
+    id_element = "ctl00_ContentPlaceHolder1_ASPxGridView1_cell%d_%d_TextBox1" % (0, 2 + id_point * 3 + shift)
     web.page().runJavaScript('document.getElementById("%s").value="%d";' % (id_element, max_point))
 
 
